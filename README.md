@@ -41,7 +41,7 @@ sensor:
       - yesterday_cost_generation
       - cost_difference
       - cost_difference_message
-      - khw_percentage_difference
+      - kwh_percentage_difference
       - yesterday_total_usage
       - yesterday_total_consumption
       - yesterday_total_consumption_peak
@@ -65,7 +65,7 @@ sensor:
   - **yesterday_cost_generation** ($): \*** Total rebate of generated energy for Yesterday
   - **cost_difference** ($): \*** Cost increase or decrease in comparision to previous day 
   - **cost_difference_message** (text): \*** A text message with difference from previous day
-  - **khw_percentage_difference** (%): Total rebate of generated energy for Yesterday  
+  - **kwh_percentage_difference** (%): Total rebate of generated energy for Yesterday  
   - **yesterday_total_usage** (kwh): Total Nett energy usage for Yesterday (Consumption - Generation)
   - **yesterday_total_consumption** (kwh) : Total consumption usage for Yesterday (Peak + Offpeak + Shoulder + Controlled_Load)
   - **yesterday_total_consumption_peak** (kwh) : Total peak energy usage for Yesterday
