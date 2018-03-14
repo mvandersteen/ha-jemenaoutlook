@@ -48,8 +48,8 @@ CONF_CONTRACT = 'contract'  # type: str
 DEFAULT_NAME = 'JemenaOutlook'
 
 REQUESTS_TIMEOUT = 15
-MIN_TIME_BETWEEN_UPDATES = timedelta(minutes=2)
-SCAN_INTERVAL = timedelta(minutes=2)
+MIN_TIME_BETWEEN_UPDATES = timedelta(hours=24)
+SCAN_INTERVAL = timedelta(hours=24)
 
 SENSOR_TYPES = {
     'yesterday_total_usage':
