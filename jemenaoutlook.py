@@ -48,8 +48,8 @@ CONF_CONTRACT = 'contract'  # type: str
 DEFAULT_NAME = 'JemenaOutlook'
 
 REQUESTS_TIMEOUT = 15
-MIN_TIME_BETWEEN_UPDATES = timedelta(hours=4)
-SCAN_INTERVAL = timedelta(hours=4)
+MIN_TIME_BETWEEN_UPDATES = timedelta(minutes=2)
+SCAN_INTERVAL = timedelta(minutes=2)
 
 SENSOR_TYPES = {
     'yesterday_total_usage':
@@ -82,8 +82,8 @@ SENSOR_TYPES = {
     ['Yesterday cost generation', PRICE, 'mdi:currency-usd'],
     'cost_difference':
     ['Cost difference', PRICE, 'mdi:currency-usd'],
-    'khw_percentage_difference':
-    ['Khw percentage difference', KILOWATT_HOUR, 'mdi:percent'],
+    'kwh_percentage_difference':
+    ['Kwh percentage difference', KILOWATT_HOUR, 'mdi:percent'],
     'cost_difference_message':
     ['Cost difference message', 'text', 'mdi:currency-usd']
 }
@@ -139,6 +139,13 @@ class JemenaOutlookSensor(Entity):
         self.jemenaoutlook_data = jemenaoutlook_data
         self._state = None
 
+        if self.type in self.jemenaoutlook_data.data is not None:
+            if type(self.jemenaoutlook_data.data[self.type]) == type(''):
+                self._state = self.jemenaoutlook_data.data[self.type]
+            else:
+                self._state = round(self.jemenaoutlook_data.data[self.type], 2)
+                
+
     @property
     def name(self):
         """Return the name of the sensor."""
@@ -164,7 +171,10 @@ class JemenaOutlookSensor(Entity):
         self.jemenaoutlook_data.update()
 
         if self.type in self.jemenaoutlook_data.data is not None:
-            self._state = round(self.jemenaoutlook_data.data[self.type], 2)
+            if type(self.jemenaoutlook_data.data[self.type]) == type(''):
+                self._state = self.jemenaoutlook_data.data[self.type]
+            else:
+                self._state = round(self.jemenaoutlook_data.data[self.type], 2)
 
 
 class JemenaOutlookData(object):
@@ -251,7 +261,7 @@ class JemenaOutlookClient(object):
 
         return True
 
-
+    
     def _get_daily_data(self, days_ago):
         """Get daily data."""
 
@@ -269,9 +279,11 @@ class JemenaOutlookClient(object):
         if not json_output.get('selectedPeriod'):
             raise JemenaOutlookError("Could not get daily data for selectedPeriod")
 
+        _LOGGER.debug("Jemena outlook json_output: %s", json_output)
+
         costDifference = json_output.get('costDifference')
         costDifferenceMessage = json_output.get('costDifferenceMessage')
-        khwPercentageDifference = json_output.get('khwPercentageDifference')
+        kwhPercentageDifference = json_output.get('kwhPercentageDifference')
         
         selectedPeriod = json_output.get('selectedPeriod')        	
         
@@ -297,7 +309,7 @@ class JemenaOutlookClient(object):
         previousPeriodGeneration = self._sum_period_array(previousPeriod['consumptionData']['generation'])
         previousPeriodSuburbAverage = self._sum_period_array(previousPeriod['consumptionData']['suburbAverage'])
             
-        daily_data = {"yesterday_total_usage": selectedPeriod['netConsumption'],
+        daily_data = {"yesterday_total_usage": (peakConsumption + offPeakConsumption + shoulderConsumption + controlledLoadConsumption - generation) ,
                       "yesterday_total_consumption": (peakConsumption + offPeakConsumption + shoulderConsumption + controlledLoadConsumption),
                       "yesterday_total_consumption_peak": (peakConsumption),
                       "yesterday_total_consumption_offpeak": (offPeakConsumption),
@@ -306,13 +318,13 @@ class JemenaOutlookClient(object):
                       "yesterday_total_generation": generation,
                       "yesterday_cost_total": (costDataPeak + costDataOffPeak + costDataShoulder + costDataControlledLoad + costDataGeneration),
                       "yesterday_cost_consumption": (costDataPeak + costDataOffPeak + costDataShoulder + costDataControlledLoad),
-                      "yesterday_cost_generation": (costDataGeneration),
+                      "yesterday_cost_generation": abs(costDataGeneration),
                       "yesterday_suburb_average": suburbAverage,
-                      "previous_total_usage": previousPeriod['netConsumption'],
+                      "previous_total_usage": (previousPeriodPeakConsumption + previousPeriodOffPeakConsumption + previousPeriodShoulderConsumption + previousPeriodControlledLoadConsumption - previousPeriodGeneration),
                       "previous_total_consumption": (previousPeriodPeakConsumption + previousPeriodOffPeakConsumption + previousPeriodShoulderConsumption + previousPeriodControlledLoadConsumption),
                       "previous_total_generation": previousPeriodGeneration,
                       "cost_difference": costDifference,
-                      "khw_percentage_difference": khwPercentageDifference,
+                      "kwh_percentage_difference": kwhPercentageDifference,
                       "cost_difference_message": costDifferenceMessage['text']
                      }
 
@@ -338,9 +350,7 @@ class JemenaOutlookClient(object):
         self._post_login_page(login_url)
 
         # Get Daily Usage data
-        daily_data = self._get_daily_data(1)
-
-        self._data = daily_data
+        self._data = self._get_daily_data(1)
 
 
     def get_data(self):
