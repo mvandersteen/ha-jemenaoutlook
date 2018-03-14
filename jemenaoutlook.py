@@ -48,8 +48,8 @@ CONF_CONTRACT = 'contract'  # type: str
 DEFAULT_NAME = 'JemenaOutlook'
 
 REQUESTS_TIMEOUT = 15
-MIN_TIME_BETWEEN_UPDATES = timedelta(minutes=2)
-SCAN_INTERVAL = timedelta(minutes=2)
+MIN_TIME_BETWEEN_UPDATES = timedelta(hours=4)
+SCAN_INTERVAL = timedelta(hours=4)
 
 SENSOR_TYPES = {
     'yesterday_total_usage':
@@ -161,13 +161,10 @@ class JemenaOutlookSensor(Entity):
 
     def update(self):
         """Get the latest data from Jemena Outlook and update the state."""
-        _LOGGER.info('update sensor: {}-{}-{}-{}'.format(self.type, self._name, self._unit_of_measurement, self._icon ))
         self.jemenaoutlook_data.update()
-        _LOGGER.info(self.jemenaoutlook_data.data)
 
         if self.type in self.jemenaoutlook_data.data is not None:
             self._state = round(self.jemenaoutlook_data.data[self.type], 2)
-            _LOGGER.info('{} = {}'.format(self.type, self._state))
 
 
 class JemenaOutlookData(object):
@@ -254,27 +251,6 @@ class JemenaOutlookClient(object):
 
         return True
 
-    
-    #def _get_weekly_data(self, weeks_ago=0):
-    #    """Get monthly data."""
-    #    params = {}
-
-    #    try:
-    #        raw_res = requests.get(PERIOD_URL + "{}/{}".format("week", weeks_ago),
-    #                               params=params,
-    #                               timeout=REQUESTS_TIMEOUT)
-    #    except OSError:
-    #        raise JemenaOutlookError("Can not get monthly data")
-    #    try:
-    #        json_output = raw_res.json()
-    #    except (OSError, json.decoder.JSONDecodeError):
-    #        raise JemenaOutlookError("Could not get monthly data")
-
-    #    if not json_output.get('success'):
-    #        raise JemenaOutlookError("Could not get monthly data")
-
-    #    return json_output.get('results')
-
 
     def _get_daily_data(self, days_ago):
         """Get daily data."""
@@ -292,8 +268,6 @@ class JemenaOutlookClient(object):
 
         if not json_output.get('selectedPeriod'):
             raise JemenaOutlookError("Could not get daily data for selectedPeriod")
-
-        _LOGGER.info("Jemena outlook json_output: %s", json_output)
 
         costDifference = json_output.get('costDifference')
         costDifferenceMessage = json_output.get('costDifferenceMessage')
@@ -365,8 +339,6 @@ class JemenaOutlookClient(object):
 
         # Get Daily Usage data
         daily_data = self._get_daily_data(1)
-
-        _LOGGER.info(daily_data)
 
         self._data = daily_data
 
