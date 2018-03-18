@@ -36,23 +36,74 @@ sensor:
     username: MYUSERNAME
     password: MYPASSWORD
     monitored_variables:
+      - supply_charge
+      - weekday_peak_cost
+      - weekday_offpeak_cost
+      - weekday_shoulder_cost
+      - controlled_load_cost
+      - weekend_offpeak_cost
+      - single_rate_cost
+      - generation_cost
+      - yesterday_user_type
+      - yesterday_usage
+      - yesterday_consumption
+      - yesterday_consumption_peak
+      - yesterday_consumption_offpeak
+      - yesterday_consumption_shoulder
+      - yesterday_consumption_controlled_load
+      - yesterday_generation
       - yesterday_cost_total
       - yesterday_cost_consumption
       - yesterday_cost_generation
-      - cost_difference
-      - cost_difference_message
-      - kwh_percentage_difference
-      - yesterday_total_usage
-      - yesterday_total_consumption
-      - yesterday_total_consumption_peak
-      - yesterday_total_consumption_offpeak
-      - yesterday_total_consumption_shoulder
-      - yesterday_total_consumption_controlled_load
-      - yesterday_total_generation
+      - yesterday_cost_difference
+      - yesterday_percentage_difference
+      - yesterday_difference_message
+      - yesterday_consumption_difference
+      - yesterday_consumption_change
       - yesterday_suburb_average
-      - previous_total_usage
-      - previous_total_consumption
-      - previous_total_generation
+      - previous_day_usage
+      - previous_day_consumption
+      - previous_day_generation
+      - this_week_user_type
+      - this_week_usage
+      - this_week_consumption
+      - this_week_consumption_peak
+      - this_week_consumption_offpeak
+      - this_week_consumption_shoulder
+      - this_week_consumption_controlled_load
+      - this_week_generation
+      - this_week_cost_total
+      - this_week_cost_consumption
+      - this_week_cost_generation
+      - this_week_cost_difference
+      - this_week_percentage_difference
+      - this_week_difference_message
+      - this_week_consumption_difference
+      - this_week_consumption_change
+      - this_week_suburb_average
+      - last_week_usage
+      - last_week_consumption
+      - last_week_generation
+      - this_month_user_type
+      - this_month_usage
+      - this_month_consumption
+      - this_month_consumption_peak
+      - this_month_consumption_offpeak
+      - this_month_consumption_shoulder
+      - this_month_consumption_controlled_load
+      - this_month_generation
+      - this_month_cost_total
+      - this_month_cost_consumption
+      - this_month_cost_generation
+      - this_month_cost_difference
+      - this_month_percentage_difference
+      - this_month_difference_message
+      - this_month_consumption_difference
+      - this_month_consumption_change
+      - this_month_suburb_average
+      - last_month_usage
+      - last_month_consumption
+      - last_month_generation
 ```
 
 **Configuration variables:**
@@ -60,23 +111,75 @@ sensor:
 - **username** (Required): Username used to log into the Jemena Electricity Outlook website.
 - **password** (Required): Password used to log into the Jemena Electricity Outlook website
 - **monitored_variables** array (Required): Variables to monitor.
-  - **yesterday_cost_total** ($): \*** Total Nett cost of energy usage Yesterday
-  - **yesterday_cost_consumption** ($): \*** Total cost of consumed energy for Yesterday
-  - **yesterday_cost_generation** ($): \*** Total rebate of generated energy for Yesterday
-  - **cost_difference** ($): \*** Cost increase or decrease in comparision to previous day 
-  - **cost_difference_message** (text): \*** A text message with difference from previous day
-  - **kwh_percentage_difference** (%): Total rebate of generated energy for Yesterday  
-  - **yesterday_total_usage** (kwh): Total Nett energy usage for Yesterday (Consumption - Generation)
-  - **yesterday_total_consumption** (kwh) : Total consumption usage for Yesterday (Peak + Offpeak + Shoulder + Controlled_Load)
-  - **yesterday_total_consumption_peak** (kwh) : Total peak energy usage for Yesterday
-  - **yesterday_total_consumption_offpeak** (kwh) : Total off peak energy usage for Yesterday
-  - **yesterday_total_consumption_shoulder** (kwh) : Total shoulder energy usage for Yesterday
-  - **yesterday_total_consumption_controlled_load** (kwh) : Total controlled load energy usage for Yesterday
-  - **yesterday_total_generation** (kwh) : Total energy generation feed into the Grid for Yesterday
-  - **previous_total_usage** (kwh) : Total Nett energy usage for day previous to Yesterday
-  - **previous_total_consumption** (kwh) : Total energy consumption usage for day previous to Yesterday
-  - **previous_total_generation** (kwh) : Total energy generation feed into grid for day previous to Yesterday
-  - **yesterday_suburb_average** (kwh) : Your suburbs average consumption
+    - **supply_charge** (AUD): **\*\*** Daily supply charge to properly
+    - **weekday_peak_cost** (AUD): **\*\*** Cost per kilowatt hour for peak usage
+    - **weekday_offpeak_cost** (AUD): **\*\*** Cost per kilowatt hour for offpeak usage
+    - **weekday_shoulder_cost** (AUD): **\*\*** Cost per kilowatt hour for shoulder usage
+    - **controlled_load_cost** (AUD): **\*\*** Cost per kilowatt hour for controlled load usage
+    - **weekend_offpeak_cost** (AUD): **\*\*** Cost per kilowatt hour for weekend offpeak usage
+    - **single_rate_cost** (AUD): **\*\*** Cost per kilowatt hour for single rate usage
+    - **generation_cost** (AUD): **\*\*** Amount paid per kilowatt hour feed into the grid
+    - **yesterday_user_type**: Type of grid user [consumer | generator]
+    - **yesterday_usage** (kwh): Net consumption of power usage for yesterday all consumption type - generation
+    - **yesterday_consumption** (kwh): Total of consuption for yesterday
+    - **yesterday_consumption_peak** (kwh): Total peak consumption for yesterday
+    - **yesterday_consumption_offpeak** (kwh): Total offpeak consumption for yesterday
+    - **yesterday_consumption_shoulder** (kwh): Total shoulder consumption for yesterday
+    - **yesterday_consumption_controlled_load** (kwh): Total controlled load consumption for yesterday
+    - **yesterday_generation** (kwh): total of generated electricity feed into the grid for yesterday
+    - **yesterday_cost_total** (AUD): Total cost of new consumption for yesterday (concumption - generation) (does not include daily supply)
+    - **yesterday_cost_consumption** (AUD): Total cost of consumption for yesterday (does not include daily supply)
+    - **yesterday_cost_generation** (AUD): Total cost of generated electricity feed into the grid.
+    - **yesterday_cost_difference** (AUD): Difference in cost from previous day
+    - **yesterday_percentage_difference** (%): percentage increase in net consumption compared to previous day
+    - **yesterday_difference_message** (text): Message displayed in Electicity Outlook to describe differnce from previous day
+    - **yesterday_consumption_difference** (KWH): difference in kilowatt hours of net consumption to previous day
+    - **yesterday_consumption_change** (text): One of increase or decrease
+    - **yesterday_suburb_average** (kwh): Average net consumption for entire suburb
+    - **previous_day_usage** (kwh): Net consumption for previous day previous to Yesterday (2 days ago)
+    - **previous_day_consumption** (kwh): Consumption for previous day previous to Yesterday (2 days ago)
+    - **previous_day_generation** (kwh): Generation for previous day previous to Yesterday (2 days ago) feed into grid
+    - this_week_user_type
+    - this_week_usage
+    - this_week_consumption
+    - this_week_consumption_peak
+    - this_week_consumption_offpeak
+    - this_week_consumption_shoulder
+    - this_week_consumption_controlled_load
+    - this_week_generation
+    - this_week_cost_total
+    - this_week_cost_consumption
+    - this_week_cost_generation
+    - this_week_cost_difference
+    - this_week_percentage_difference
+    - this_week_difference_message
+    - this_week_consumption_difference
+    - this_week_consumption_change
+    - this_week_suburb_average
+    - last_week_usage
+    - last_week_consumption
+    - last_week_generation
+    - this_month_user_type
+    - this_month_usage
+    - this_month_consumption
+    - this_month_consumption_peak
+    - this_month_consumption_offpeak
+    - this_month_consumption_shoulder
+    - this_month_consumption_controlled_load
+    - this_month_generation
+    - this_month_cost_total
+    - this_month_cost_consumption
+    - this_month_cost_generation
+    - this_month_cost_difference
+    - this_month_percentage_difference
+    - this_month_difference_message
+    - this_month_consumption_difference
+    - this_month_consumption_change
+    - this_month_suburb_average
+    - last_month_usage
+    - last_month_consumption
+    - last_month_generation
+
 
 \*** For the cost based variables to be reported correctly you must setup your account with your current tarrif from your electricity retailer. These values can be obtained from your latest electricity bill. 
 
