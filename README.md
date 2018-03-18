@@ -127,10 +127,10 @@ sensor:
     - **yesterday_consumption_shoulder** (kwh): Total shoulder consumption for yesterday
     - **yesterday_consumption_controlled_load** (kwh): Total controlled load consumption for yesterday
     - **yesterday_generation** (kwh): total of generated electricity feed into the grid for yesterday
-    - **yesterday_cost_total** (AUD): **\*\*\***Total cost of new consumption for yesterday (concumption - generation) (does not include daily supply)
-    - **yesterday_cost_consumption** (AUD): **\*\*\***Total cost of consumption for yesterday (does not include daily supply)
-    - **yesterday_cost_generation** (AUD): **\*\*\***Total cost of generated electricity feed into the grid.
-    - **yesterday_cost_difference** (AUD): **\*\*\***Difference in cost from previous day
+    - **yesterday_cost_total** (AUD): **\*\*\*** Total cost of new consumption for yesterday (concumption - generation) (does not include daily supply)
+    - **yesterday_cost_consumption** (AUD): **\*\*\*** Total cost of consumption for yesterday (does not include daily supply)
+    - **yesterday_cost_generation** (AUD): **\*\*\*** Total cost of generated electricity feed into the grid.
+    - **yesterday_cost_difference** (AUD): **\*\*\*** Difference in cost from previous day
     - **yesterday_percentage_difference** (%): percentage increase in net consumption compared to previous day
     - **yesterday_difference_message** (text): Message displayed in Electicity Outlook to describe differnce from previous day
     - **yesterday_consumption_difference** (KWH): difference in kilowatt hours of net consumption to previous day
