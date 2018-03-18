@@ -111,15 +111,15 @@ sensor:
 - **username** (Required): Username used to log into the Jemena Electricity Outlook website.
 - **password** (Required): Password used to log into the Jemena Electricity Outlook website
 - **monitored_variables** array (Required): Variables to monitor.
-    - **supply_charge** (AUD): **\*\*** Daily supply charge to properly
-    - **weekday_peak_cost** (AUD): **\*\*** Cost per kilowatt hour for peak usage
-    - **weekday_offpeak_cost** (AUD): **\*\*** Cost per kilowatt hour for offpeak usage
-    - **weekday_shoulder_cost** (AUD): **\*\*** Cost per kilowatt hour for shoulder usage
-    - **controlled_load_cost** (AUD): **\*\*** Cost per kilowatt hour for controlled load usage
-    - **weekend_offpeak_cost** (AUD): **\*\*** Cost per kilowatt hour for weekend offpeak usage
-    - **single_rate_cost** (AUD): **\*\*** Cost per kilowatt hour for single rate usage
-    - **generation_cost** (AUD): **\*\*** Amount paid per kilowatt hour feed into the grid
-    - **yesterday_user_type**: Type of grid user [consumer | generator]
+    - **supply_charge** (AUD): **\*\*\*** Daily supply charge to properly
+    - **weekday_peak_cost** (AUD): **\*\*\*** Cost per kilowatt hour for peak usage
+    - **weekday_offpeak_cost** (AUD): **\*\*\*** Cost per kilowatt hour for offpeak usage
+    - **weekday_shoulder_cost** (AUD): **\*\*\*** Cost per kilowatt hour for shoulder usage
+    - **controlled_load_cost** (AUD): **\*\*\*** Cost per kilowatt hour for controlled load usage
+    - **weekend_offpeak_cost** (AUD): **\*\*\*** Cost per kilowatt hour for weekend offpeak usage
+    - **single_rate_cost** (AUD): **\*\*\*** Cost per kilowatt hour for single rate usage
+    - **generation_cost** (AUD): **\*\*\*** Amount paid per kilowatt hour feed into the grid
+    - **yesterday_user_type** (text): Type of grid user [consumer | generator]
     - **yesterday_usage** (kwh): Net consumption of power usage for yesterday all consumption type - generation
     - **yesterday_consumption** (kwh): Total of consuption for yesterday
     - **yesterday_consumption_peak** (kwh): Total peak consumption for yesterday
@@ -127,10 +127,10 @@ sensor:
     - **yesterday_consumption_shoulder** (kwh): Total shoulder consumption for yesterday
     - **yesterday_consumption_controlled_load** (kwh): Total controlled load consumption for yesterday
     - **yesterday_generation** (kwh): total of generated electricity feed into the grid for yesterday
-    - **yesterday_cost_total** (AUD): Total cost of new consumption for yesterday (concumption - generation) (does not include daily supply)
-    - **yesterday_cost_consumption** (AUD): Total cost of consumption for yesterday (does not include daily supply)
-    - **yesterday_cost_generation** (AUD): Total cost of generated electricity feed into the grid.
-    - **yesterday_cost_difference** (AUD): Difference in cost from previous day
+    - **yesterday_cost_total** (AUD): **\*\*\***Total cost of new consumption for yesterday (concumption - generation) (does not include daily supply)
+    - **yesterday_cost_consumption** (AUD): **\*\*\***Total cost of consumption for yesterday (does not include daily supply)
+    - **yesterday_cost_generation** (AUD): **\*\*\***Total cost of generated electricity feed into the grid.
+    - **yesterday_cost_difference** (AUD): **\*\*\***Difference in cost from previous day
     - **yesterday_percentage_difference** (%): percentage increase in net consumption compared to previous day
     - **yesterday_difference_message** (text): Message displayed in Electicity Outlook to describe differnce from previous day
     - **yesterday_consumption_difference** (KWH): difference in kilowatt hours of net consumption to previous day
