@@ -43,7 +43,6 @@ REQUESTS_TIMEOUT = 15
 KILOWATT_HOUR = 'kWh'  # type: str
 PRICE = 'AUD'  # type: str
 DAYS = 'days'  # type: str
-CONF_CONTRACT = 'contract'  # type: str
 
 DEFAULT_NAME = 'JemenaOutlook'
 
