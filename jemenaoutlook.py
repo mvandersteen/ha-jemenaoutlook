@@ -5,7 +5,7 @@ Get data from 'Jemena Energy Outlook - Your Electricity Use' page/s:
 https://electricityoutlook.jemena.com.au/electricityView/index
 
 For more details about this platform, please refer to the documentation at
-https://home-assistant.io/components/sensor.jemenaoutlook/
+https://github.com/mvandersteen/ha-jemenaoutlook
 """
 import logging
 from datetime import timedelta
