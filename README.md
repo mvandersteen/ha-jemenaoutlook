@@ -16,7 +16,7 @@ This component is not endorsed by Jemena, nor have a I asked for their endorseme
 
 ## Installing the component
 
-Copy the included file 'jemenaoutlook.py' to the sensor directory within custom_components directory where the configuration for your installation of home assistant sits. The custom_components directory does not exist in default installation state will will need to be created if it does not already exist.
+Copy the included file 'jemenaoutlook.py' to it's own directory and rename to 'sensor.py' within custom_components directory where the configuration for your installation of home assistant sits. The custom_components directory does not exist in default installation state will will need to be created if it does not already exist.
 
 ```
 <homeassistant-user-configuration-directory>/custom_components/jemenaoutlook/sensor.py
