@@ -1,0 +1,1 @@
+"""The Jemena Outlook integration."""

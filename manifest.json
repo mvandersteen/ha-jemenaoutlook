@@ -1,0 +1,8 @@
+{
+  "domain": "jemenaoutlook",
+  "name": "JemenaOutlook",
+  "documentation": "https://github.com/mvandersteen/ha-jemenaoutlook",
+  "dependencies": [],
+  "codeowners": ["@mvandersteen"],
+  "requirements": []
+}
