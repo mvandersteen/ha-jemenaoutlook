@@ -3,6 +3,7 @@
   "name": "JemenaOutlook",
   "documentation": "https://github.com/mvandersteen/ha-jemenaoutlook",
   "dependencies": [],
+  "version": "1.0.2",
   "codeowners": ["@mvandersteen"],
   "requirements": []
 }
