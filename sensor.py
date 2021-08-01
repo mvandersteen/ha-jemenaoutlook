@@ -175,7 +175,7 @@ class JemenaOutlookSensor(Entity):
 
         _LOGGER.info('init data: %s', jemenaoutlook_data.data)
 
-        if self.type in self.jemenaoutlook_data.data is not None:
+        if self.type is not None and self.jemenaoutlook_data.data.get(self.type) is not None:
             if type(self.jemenaoutlook_data.data[self.type]) == type(''):
                 self._state = self.jemenaoutlook_data.data[self.type]
             else:
