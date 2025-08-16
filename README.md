@@ -1,4 +1,4 @@
-**NOTE** Jemena no longer uses the electricity outlook software that this was originally built on. I'll leave this active in case teh other distributors that could use this are still enabled for now.
+**NOTE** Jemena no longer uses the electricity outlook software that this was originally built on. I'll leave this active in case the other distributors that could use this are still enabled for now.
 
 Please see a new version created by @jonnynch @ [ha-jemenaoutlook](https://github.com/jonnynch/ha-jemenaoutlook) which integrates with the new portal Jemena are using [MyPortal](https://myportal.jemena.com.au/).
  
@@ -197,5 +197,6 @@ sensor:
 
 
 \*** For the cost based variables to be reported correctly you must setup your account with your current tarrif from your electricity retailer. These values can be obtained from your latest electricity bill. 
+
 
 
